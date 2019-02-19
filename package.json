@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/RaghunathVadlakonda/Web-form/issues"
   },
-  "homepage": "https://github.com/RaghunathVadlakonda/Web-form#readme"
+  "homepage": "https://github.com/RaghunathVadlakonda/Web-form#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4"
+  }
 }
