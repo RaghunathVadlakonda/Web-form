@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
+const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const port = process.env.PORT || 5000;
 const DATABASEURL = process.env.DATABASEURL;
-console.log(process.env.DBUSER, process.env.DBPASSWORD);
-const app = express();
+const mongoose = require('mongoose');
 
 // route
 const userRoutes = require('./routes/user');
@@ -17,22 +17,19 @@ mongoose.connect(DATABASEURL,{ useNewUrlParser : true, useCreateIndex:true});
 mongoose.Promise = global.Promise;
 
 //allows static files to be accessed publicly available
-app.use('/uploads',express.static('uploads'));
+//app.use('/uploads',express.static('uploads'));
+
+
+app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
 
-// app.use((req,res,next)=>{
-//     //* will give access to any origin
-//  res.header('Access-Control-Allow-Origin','*');
-// //  res.header('Access-Control-Allow-Origin','Origin,X-Requested-With,Content-Type,Accept');
-// //  if(req.method === 'OPTIONS'){
-// //      res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-// //      return res.status(200).json({});
-// //  }
-//  next();
-// });
+app.use((req,res,next)=>{
+ res.header('Access-Control-Allow-Origin','*');
+ next();
+});
 
 
 app.use('/form', userRoutes);

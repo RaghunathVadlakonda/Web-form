@@ -34,17 +34,15 @@ const upload = multer({
 
 
 // route 
-//router.get();
 
-router.post('/form',upload.single('image'), (req, res, next) => {
+router.post('/form', upload.single('image'), (req, res, next) => {
     const user = new User ({
         name : req.body.name,
         phonenumber : req.body.phonenumber,
         email : req.body.email,
         jobtitle : req.body.jobtitle,
         image : req.newFileName,
-    })
-
+    });
 user
 .save()
 .then (result => {
