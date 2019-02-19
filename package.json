@@ -1,0 +1,19 @@
+{
+  "name": "web-form",
+  "version": "1.0.0",
+  "description": "A simple web form for storing the user details - User Collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaghunathVadlakonda/Web-form.git"
+  },
+  "author": "Raghunath Vadlakonda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaghunathVadlakonda/Web-form/issues"
+  },
+  "homepage": "https://github.com/RaghunathVadlakonda/Web-form#readme"
+}
