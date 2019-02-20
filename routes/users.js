@@ -33,23 +33,29 @@ const upload = multer({
   });
 
 
-// route 
+// GET ROUTE 
+router.get('/', (req, res) => {
+    res.send('hit');
+});
 
-router.post('/form', upload.single('image'), (req, res, next) => {
+//POST ROUTE
+router.post('/', upload.single('image'), (req, res) => {
+    //console.log('in');
     const user = new User ({
-        name : req.body.name,
+        _id : new mongoose.Types.ObjectId(),
+        title : req.body.name,
         phonenumber : req.body.phonenumber,
         email : req.body.email,
         jobtitle : req.body.jobtitle,
-        image : req.newFileName,
+        image : req.newFileName
     });
 user
 .save()
 .then (result => {
     console.log(result);
-    res.status(200).json({
+    res.status(201).json({
         message : 'success',
-        createdUser: user
+        createdUser: user,
     });
 })
 .catch(err => {
@@ -58,7 +64,7 @@ user
         error : err
     });
 });
-});
+})
 
 
   module.exports = router;
