@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const path = require('path');
+//const fileUpload = require('express-fileupload');
 const port = process.env.PORT || 5000;
 const DATABASEURL = process.env.DATABASEURL;
 
@@ -22,19 +24,15 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-//allows static files to be accessed publicly available
-app.use('/uploads',express.static('uploads'));
-
-
 app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
+const User = require('./models/user');
 
-
-
-// app.use((req,res,next)=>{
-//  res.header('Access-Control-Allow-Origin','*');
-//  next();
-// });
+app.use(cors());
+app.use((req,res,next)=>{
+ res.header('Access-Control-Allow-Origin','*');
+ next();
+});
 
 
 app.use('/form', userRoutes);
