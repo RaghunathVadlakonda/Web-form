@@ -46,25 +46,30 @@ componentDidMount(){
 
 
 fileUploadHandler = () => {
-    const data = new FormData();
-    data.append('name', this.state.name);
-    data.append('phonenumber', this.state.phonenumber);
-    data.append('email', this.state.email);
-    data.append('jobtitle', this.state.jobtitle);
-    data.append('image', this.state.image);
+    const fd = new FormData();
+    fd.append('name', this.state.name);
+    fd.append('phonenumber', this.state.phonenumber);
+    fd.append('email', this.state.email);
+    fd.append('jobtitle', this.state.jobtitle);
+    //console.log('beginning');
+    fd.append('image', this.state.image);
+    //console.log('ending');
 
-    axios.post('/form', data, {
+
+    axios.post('/form', fd,
+    {
         onUploadProgress : ProgressEvent => {
             console.log('Upload Progress' +Math.round(ProgressEvent.loaded / ProgressEvent.total * 100) + '%')
         }
     })
+    
+    .then(res => {
+        console.log(res)
+    })
+    .catch((err) => {
+        console.log("Error in Uploading ", err)
+    })
 
-.then(res => {
-    console.log(res)
-})
-.catch((err) => {
-    console.log("Error in Uploading ", err)
-})
 }
 
 
@@ -77,9 +82,10 @@ render() {
             <input type = 'number' name = 'phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange}/><br/><br/>
             <input type = 'email' name = 'email' value = {this.state.email} onChange={this.pleaseChange}/> <br/><br/>
             <input type = 'text' name = 'jobtitle' value = {this.state.jobtitle} onChange={this.pleaseChange} /><br/><br/>
-            <input type = 'file' name = 'image' value = {this.state.image} onChange={this.pleaseChange}/> <br/><br/>
+            <input type = 'file' name = 'image' 
+            value = {this.state.image} onChange={this.pleaseChange}/> <br/><br/>
             {/* <button onClick={this.fileUploadHandler}> Upload </button> */}
-            <button onClick={e => this.fileUploadHandler(e)}> Submit </button>
+            <button onClick={this.fileUploadHandler}> Submit </button>
         </form>
       </div>
     );
