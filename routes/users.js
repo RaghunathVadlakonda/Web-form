@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
@@ -39,15 +40,16 @@ router.get('/', (req, res) => {
 });
 
 //POST ROUTE
-router.post('/', upload.single('image'), (req, res) => {
-    //console.log('in');
+router.post('/', upload.single('image'), (req, res, next) => {
+    console.log(req.image);
     const user = new User ({
         _id : new mongoose.Types.ObjectId(),
-        title : req.body.name,
+        name : req.body.name,
         phonenumber : req.body.phonenumber,
         email : req.body.email,
         jobtitle : req.body.jobtitle,
-        image : req.newFileName
+        image : req.newFileName,
+        
     });
 user
 .save()
