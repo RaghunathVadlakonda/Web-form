@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+//const path = require('path');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
@@ -54,6 +54,7 @@ router.post('/', upload.single('image'), (req, res, next) => {
 user
 .save()
 .then (result => {
+    console.log("success");
     console.log(result);
     res.status(201).json({
         message : 'success',

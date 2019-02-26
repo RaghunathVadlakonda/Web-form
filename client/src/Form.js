@@ -6,11 +6,16 @@ class Form extends Component {
   constructor(){
     super();
     this.state={
-      name : '',
-      phonenumber : '',
-      email : '',
-      jobtitle: '',
-      image: ''
+      name : "",
+      nameError: "",
+      phonenumber : "",
+      phonenumberError: "",
+      email : "",
+      emailError: "",
+      jobtitle: "",
+      jobtitleError: "",
+      image: "",
+      imageError: "",
     }
   }
 
@@ -26,19 +31,54 @@ pleaseChange = (e)=>{
     })
     
 }
+
+//for client side validation for user fields
+validate = () => {
+    let isError = false;
+    const errors = {
+        nameError: "",
+        phonenumberError: "",
+        emailError: "",
+        jobtitleError: "",
+        imageError: "",
+    };
+
+    if(this.state.name.length < 5) {
+        isError = true;
+        errors.nameError = "name must be atleast more than 5 characters";
+    }
+
+    if(this.state.email.indexOf('@') === -1) {
+        isError = true;
+        errors.nameError = "please enter a valid email address";
+    }
+
+
+    if(isError) {
+        this.setState({
+            ...this.state,
+            ...errors
+        });
+    }
+
+    return isError;
+}
   
 pleaseSubmit = (e)=>{
     e.preventDefault(); 
-    const data = this.state;
-    console.log(data);
-    this.setState ({
-        name :'',
-        phonenumber :'',
-        email :'',
-        jobtitle:'',
-        image:'',
-    })
-}
+    const err = this.validate();
+    if(!err){
+        const data = this.state;
+        console.log(data);
+        this.setState ({
+          name : "",
+          phonenumber : "",
+          email : "",
+          jobtitle: "",
+          image: "",
+      });
+    }
+};
 
 componentDidMount(){
     console.log(this.state)
@@ -78,12 +118,12 @@ render() {
     return (
       <div className = 'Form'>
         <form onSubmit = {this.pleaseSubmit}>
-            <input type = 'text' name = 'name' value = {this.state.name} onChange={this.pleaseChange} /><br/><br/>
-            <input type = 'number' name = 'phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange}/><br/><br/>
-            <input type = 'email' name = 'email' value = {this.state.email} onChange={this.pleaseChange}/> <br/><br/>
-            <input type = 'text' name = 'jobtitle' value = {this.state.jobtitle} onChange={this.pleaseChange} /><br/><br/>
+            <input type = 'text' name = 'name' value = {this.state.name} onChange={this.pleaseChange} errorText={this.state.nameError} /><br/><br/>
+            <input type = 'number' name = 'phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange} errorText={this.state.phonenumberError} /><br/><br/>
+            <input type = 'email' name = 'email' value = {this.state.email} onChange={this.pleaseChange} errorText={this.state.emailError} /> <br/><br/>
+            <input type = 'text' name = 'jobtitle' value = {this.state.jobtitle} onChange={this.pleaseChange} errorText={this.state.jobtitleError} /><br/><br/>
             <input type = 'file' name = 'image' 
-            value = {this.state.image} onChange={this.pleaseChange}/> <br/><br/>
+            value = {this.state.image} onChange={this.pleaseChange} errorText={this.state.imageError} /> <br/><br/>
             {/* <button onClick={this.fileUploadHandler}> Upload </button> */}
             <button onClick={this.fileUploadHandler}> Submit </button>
         </form>
