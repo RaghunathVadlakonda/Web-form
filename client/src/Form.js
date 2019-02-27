@@ -14,7 +14,7 @@ class Form extends Component {
       emailError: "",
       jobtitle: "",
       jobtitleError: "",
-      image: "",
+      image: null,
       imageError: "",
     }
   }
@@ -23,16 +23,25 @@ class Form extends Component {
     console.log(e.target.files[0])
   }
 
-
-
-pleaseChange = (e)=>{
+ // ======================= this is for text fields render function  =======================
+  pleaseChange = (e)=>{
+    //console.log(e.target.files[0]);
     this.setState({
         [e.target.name] : e.target.value
-    })
-    
+        
+    })   
 }
 
-//for client side validation for user fields
+// ======================= this is for image render function  =======================
+pleaseChangeimage = (e)=>{
+    //console.log(e.target.files[0]);
+    this.setState({
+        image : e.target.files[0]
+        
+    })
+}
+
+//// ======================= for client side validation for user fields  =======================
 validate = () => {
     let isError = false;
     const errors = {
@@ -93,7 +102,7 @@ fileUploadHandler = () => {
     fd.append('jobtitle', this.state.jobtitle);
     //console.log('beginning');
     fd.append('image', this.state.image);
-    //console.log('ending');
+    console.log(fd);
 
 
     axios.post('/form', fd,
@@ -109,21 +118,19 @@ fileUploadHandler = () => {
     .catch((err) => {
         console.log("Error in Uploading ", err)
     })
-
 }
-
 
 
 render() {
     return (
       <div className = 'Form'>
         <form onSubmit = {this.pleaseSubmit}>
-            <input type = 'text' name = 'name' value = {this.state.name} onChange={this.pleaseChange} errorText={this.state.nameError} /><br/><br/>
-            <input type = 'number' name = 'phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange} errorText={this.state.phonenumberError} /><br/><br/>
-            <input type = 'email' name = 'email' value = {this.state.email} onChange={this.pleaseChange} errorText={this.state.emailError} /> <br/><br/>
-            <input type = 'text' name = 'jobtitle' value = {this.state.jobtitle} onChange={this.pleaseChange} errorText={this.state.jobtitleError} /><br/><br/>
+            <input type = 'text' name = 'name' placeholder = 'Enter Your Name' value = {this.state.name} onChange={this.pleaseChange} errortext={this.state.nameError} /><br/><br/>
+            <input type = 'number' name = 'phonenumber' placeholder = 'Enter Your phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange} errortext={this.state.phonenumberError} /><br/><br/>
+            <input type = 'email' name = 'email' placeholder = 'Enter Your Email' value = {this.state.email} onChange={this.pleaseChange} errortext={this.state.emailError} /> <br/><br/>
+            <input type = 'text' name = 'jobtitle' placeholder = 'Enter Your JobTitle' value = {this.state.jobtitle} onChange={this.pleaseChange} errortext={this.state.jobtitleError} /><br/><br/>
             <input type = 'file' name = 'image' 
-            value = {this.state.image} onChange={this.pleaseChange} errorText={this.state.imageError} /> <br/><br/>
+             onChange={this.pleaseChangeimage} /> <br/><br/>
             {/* <button onClick={this.fileUploadHandler}> Upload </button> */}
             <button onClick={this.fileUploadHandler}> Submit </button>
         </form>
