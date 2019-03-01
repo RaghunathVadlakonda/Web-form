@@ -6,7 +6,7 @@ Clone the project repo from Github.
 
 # Installation
 In root directory run npm install to install all server-side dependencies.
-In client directory run npm install to install all client-side dependencies.
+In client directory run npm install to install all client-side dependencies or you can use Yarn.
 
 # MLab Keys
 Head over to mlab.com for creating cloud storage database. 
