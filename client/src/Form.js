@@ -32,7 +32,7 @@ class Form extends Component {
     })   
 }
 
-// ======================= this is for image render function  =======================
+// ======================= this is for image field render function  =======================
 pleaseChangeimage = (e)=>{
     //console.log(e.target.files[0]);
     this.setState({
@@ -100,7 +100,6 @@ fileUploadHandler = () => {
     fd.append('phonenumber', this.state.phonenumber);
     fd.append('email', this.state.email);
     fd.append('jobtitle', this.state.jobtitle);
-    //console.log('beginning');
     fd.append('image', this.state.image);
     console.log(fd);
 
@@ -109,6 +108,7 @@ fileUploadHandler = () => {
     {
         onUploadProgress : ProgressEvent => {
             console.log('Upload Progress' +Math.round(ProgressEvent.loaded / ProgressEvent.total * 100) + '%')
+            alert('success');
         }
     })
     
@@ -132,7 +132,7 @@ render() {
             <input type = 'file' name = 'image' 
              onChange={this.pleaseChangeimage} /> <br/><br/>
             {/* <button onClick={this.fileUploadHandler}> Upload </button> */}
-            <button onClick={this.fileUploadHandler}> Submit </button>
+            <button onClick={this.fileUploadHandler} > Submit </button>
         </form>
       </div>
     );

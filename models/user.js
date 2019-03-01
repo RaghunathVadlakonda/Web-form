@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
         unique:true,
+        index:true,
+        sparse:true,
         match: /([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\[[\t -Z^-~]*])/
     },
     jobtitle:{

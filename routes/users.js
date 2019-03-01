@@ -6,7 +6,8 @@ const multer = require('multer');
 const User = require('../models/user');
 
 
-//set the storage engine
+
+// ======================== set the storage engine ========================
 const storage = multer.diskStorage ({
     destination : './public/uploads',
     filename: function(req, file, callback) {
@@ -14,6 +15,7 @@ const storage = multer.diskStorage ({
         callback(null , req.newFileName);
     }
 });
+
 
 const fileFilter = (req, file, callback) => {
     //reject a file
@@ -24,7 +26,7 @@ const fileFilter = (req, file, callback) => {
       }
     };
 
-// stores in uploads folder
+// ======================== stores in uploads folder ========================
 const upload = multer({
     storage: storage,
     limits: {
@@ -34,14 +36,15 @@ const upload = multer({
   });
 
 
-// GET ROUTE 
-router.get('/', (req, res) => {
-    res.send('hit');
-});
+// ======================== GET ROUTE ========================
+// router.get('/', (req, res) => {
+//     res.send('Success');
+// });
 
-//POST ROUTE
+
+// ======================== POST ROUTE ========================
 router.post('/', upload.single('image'), (req, res, next) => {
-    console.log(req.image);
+    console.log(req.newFileName);
     const user = new User ({
         _id : new mongoose.Types.ObjectId(),
         name : req.body.name,
