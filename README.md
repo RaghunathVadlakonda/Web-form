@@ -21,8 +21,8 @@ $npm run dev - This is will run server-side and client-side server's concurrentl
 Use ngrok to host your local server to internet.
 check the Documentation for ngrok - ngrok.com.
 
-# ngrok link for this repo 
-http://6fccd33b.ngrok.io
+<!-- # ngrok link for this repo 
+http://6fccd33b.ngrok.io -->
 
 # Tech Stack
 React js
