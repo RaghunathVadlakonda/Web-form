@@ -24,4 +24,9 @@ check the Documentation for ngrok - ngrok.com.
 # ngrok link for this repo 
 http://6fccd33b.ngrok.io
 
+# Tech Stack
+React js
+Node js/Express
+MongoDB
+
 
