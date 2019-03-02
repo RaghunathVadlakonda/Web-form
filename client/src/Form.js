@@ -16,6 +16,7 @@ class Form extends Component {
       jobtitleError: "",
       image: null,
       imageError: "",
+      
     }
   }
 
@@ -85,7 +86,15 @@ pleaseSubmit = (e)=>{
           email : "",
           jobtitle: "",
           image: "",
+          message: "success"
       });
+
+    //   this.props.onFormSubmit({
+    //     url: "/submit"
+    //   }, function(data) {
+    //     this.setState({ message: data });
+    //   });
+
     }
 };
 
@@ -123,7 +132,7 @@ fileUploadHandler = () => {
 
 render() {
     return (
-      <div className = 'Form'>
+      <div className = 'Form'> {this.state.message}
         <form onSubmit = {this.pleaseSubmit}>
             <input type = 'text' name = 'name' placeholder = 'Enter Your Name' value = {this.state.name} onChange={this.pleaseChange} errortext={this.state.nameError} /><br/><br/>
             <input type = 'number' name = 'phonenumber' placeholder = 'Enter Your phonenumber' value = {this.state.phonenumber} onChange={this.pleaseChange} errortext={this.state.phonenumberError} /><br/><br/>
