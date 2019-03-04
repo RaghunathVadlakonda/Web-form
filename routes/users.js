@@ -37,9 +37,9 @@ const upload = multer({
 
 
 // ======================== GET ROUTE ========================
-// router.get('/', (req, res) => {
-//     res.send('Success');
-// });
+router.get('/', (req, res) => {
+    res.send('Success');
+});
 
 
 // ======================== POST ROUTE ========================
