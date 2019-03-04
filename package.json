@@ -8,7 +8,7 @@
     "start": "node app.js",
     "server": "node app.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run app\" \"npm run client\""
   },
   "repository": {
     "type": "git",
