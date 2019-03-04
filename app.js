@@ -16,7 +16,7 @@ const userRoutes = require('./routes/users');
 
 
 // ======================== mongodb connection ======================== 
-mongoose.connect(DATABASEURL,{ useNewUrlParser : true, useCreateIndex : true});
+mongoose.connect(DATABASEURL,{useNewUrlParser : true, useMongoClient:true, useCreateIndex : true});
 
 
 // ======================== DeprecationWarning ========================
