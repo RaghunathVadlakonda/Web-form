@@ -43,9 +43,9 @@ app.use((req,res,next)=>{
 app.use('/form', userRoutes);
 
 
-app.get('/', (req, res, next) => {
-    res.send('started');
-})
+// app.get('/', (req, res, next) => {
+//     res.send('started');
+// })
 
 
 // ======================== error handling ========================
