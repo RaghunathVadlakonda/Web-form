@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 //const fileUpload = require('express-fileupload');
 const port = process.env.PORT || 5000;
-const DATABASEURL = process.env.DATABASEURL;
+const DATABASEURL = process.env.DATABASEURL.toString();
 
 
 // ===================== route ========================
